@@ -1,20 +1,17 @@
+@import "bourbon";
+
 /*/// Beginning Page Style ///*/
 
-body {
+.container {
   width: 960px;
   margin: 0 auto;
   padding-top: 60px;
 }
 
-.container {
-  width: 960px;
-  margin: 0 auto;
-}
-
 .item-break {
   width: 100%;
   text-align: center;
-  display: inline-block;
+  // display: inline-block;
   border-top: 1px solid #e1e7ea;
   padding-top: 40px;
   padding-bottom: 150px;
@@ -57,8 +54,7 @@ $colorBlack: black;
   height: 150px;
   background-color: $colorBlue;
   margin: 0 auto;
-  -webkit-transition:background-color 0.5s, -webkit-transform 6s, border-radius 1s;
-    transition:background-color 0.5s, transform 6s, border-radius 1s;
+  @include transition (background-color 0.5s, transform 6s, border-radius 1s);
 
 	&:hover {
 	  border: 4px solid $colorBlue;
@@ -79,14 +75,12 @@ $colorBlack: black;
   margin-right: 15%;
   background-color: $colorYellow;
   padding: 10px;
-  -webkit-transition: -webkit-transform 2s;
-  transition: transform 2s;
+  @include background(transform 2s);
 
 	&:hover {
 	  background-color: $colorRed;
 	  color: $colorWhite;
-	  -webkit-transform:rotateY(180deg);
-	  transform:rotateY(180deg);
+	  @include transform(rotateY(180deg));
 	}  
 }
 
@@ -100,12 +94,12 @@ $colorBlack: black;
   width: 150px;
   height: 150px;
   background-color: $colorBlue;
-  transition: all 3s ease;
+  @include transition(all 3s ease);
 
 	&:active {
-	  -webkit-transform: translate(600px);
+	  @include transform(translate(600px));
 	  opacity: .4;
-	  transition: all .5s ease;
+	  @include transition(all .5s ease);
 	}  
 }
 
@@ -142,13 +136,11 @@ $colorBlack: black;
   width: 150px;
   height: 150px;
   background-color: $colorBlue;
-  -webkit-transition: all 1s ease-in-out;
-  transition: all 1s ease-in-out;
+  @include transition(all 1s ease-in-out);
 
 	&:hover {
-	  -webkit-transform: rotate(-360deg);
-	  -webkit-transition: all 0.5s ease-in-out;
-	  transition: all 0.5s ease-in-out;
+	  @include transform(rotate(-360deg));
+	  @include transition(all 0.5s ease-in-out);
 	}  
 }  
 
@@ -162,15 +154,15 @@ $colorBlack: black;
   width: 150px;
   height: 150px;
   background-color: $colorBlue;
-  transition: all .5s ease;
+  @include transition(all .5s ease);
 
 	&:active {
 	  border: 4px solid $colorBlue;
 	  border-radius:50%;
 	  display: block;
 	  background-color: $colorGray;
-	  -webkit-transform: translate(600px);
-	  transition: all .5s ease;
+	  @include transform(translate(600px));
+	  @include transition(all .5s ease);
 	}  
 }
 
@@ -192,9 +184,7 @@ $colorBlack: black;
   font-size: 30px;
   text-shadow: 1px 1px 4px rgba(44, 62, 80, 1);
   text-transform: uppercase;
-  -webkit-box-shadow: 2px 3px 12px 0px rgba(50, 50, 50, 0.65);
-  -moz-box-shadow:    2px 3px 12px 0px rgba(50, 50, 50, 0.65);
-  box-shadow:         2px 3px 12px 0px rgba(50, 50, 50, 0.65);
+  box-shadow: 2px 3px 12px 0px rgba(50, 50, 50, 0.65);
 }
 
 
@@ -217,8 +207,8 @@ $colorBlack: black;
   line-height: 42px;
   text-shadow: 1px 1px 4px rgba(44, 62, 80, 1);
   box-shadow: inset 0px -6px 0px 0px rgb(16, 204, 173),
-                    0    0   0   4px  black;
-  transition: all 0.1s ease;
+                    0    0   0   4px  $colorBlack;
+  @include transition(all 0.1s ease);
 
 	&:hover {
 	  height: 47px;
@@ -237,7 +227,7 @@ $colorBlack: black;
 
 /*/// Beginning Item No. 9 ///*/
 
-.bouncing-ball {
+.expanding-ball {
   margin: 0 auto;
   display: block;
   width: 100px;
@@ -246,9 +236,7 @@ $colorBlack: black;
   background-color: $colorBlue;
   box-shadow: inset -2px -3px 10px rgba(0,0,0,.6);
   position:relative;
-  -webkit-animation: bounce 2s infinite;
-  animation: bounce 2s infinite;
-  transition: all 0.5s ease;
+  @include transition(all 0.5s ease);
 
 	&:hover {
 	  width: 400px;
@@ -277,8 +265,7 @@ figcaption {
   opacity: 0;
   bottom: 0; 
   left: -30%;
-  -webkit-transition: all 0.6s ease;
-          transition: all 0.6s ease;
+  @include transition(all 0.6s ease);
 }
 
 .bottom-caption figcaption { left: 0; bottom: -30%;}
@@ -288,4 +275,32 @@ figure:hover figcaption {
   opacity: 1;
   left: 0;
 }
+/*/// End Item No. 10 ///*/
+
+/*/// Beginning Item No. 11 ///*/
+
+$border-style: 4px solid;
+
+@mixin square($bg) {
+  width: 150px;
+  height: 150px;
+
+  border: $border-style darken($bg, 55%);
+  background-color: $bg;
+  margin: 0 auto;
+  @include transition(all 0.5s ease-in-out);
+
+	&:hover {
+	  border: $border-style ($bg);
+	  background-color: darken($bg, 55%);
+	  border-radius: 50%;
+	  @include transform(rotate(-980deg));
+	  @include transition(all 0.5s ease-in-out);
+	}  
+}
+
+.blue-square {
+	@include square(#7ED4F5);
+}
+
 /*/// End Item No. 10 ///*/
